@@ -6,17 +6,12 @@ let sse_controller: ReadableStreamDefaultController<Uint8Array> | null = null;
 
 app.put("/api/notifydate", async (c) => {
   const data = await c.req.json();
-  let elapsed_time = -1;
-  if (data?.date) {
-    elapsed_time =
-      Math.abs(new Date(data.date).getTime() - new Date().getTime());
-  }
-  const currentTime = new Date().toISOString();
+
   const json = JSON.stringify({
-    send_date: new Date(data.date).toISOString(),
-    date: currentTime,
-    diff: elapsed_time,
+    send_date: data.date,
+    date: new Date().toISOString(),
   });
+
   sse_controller?.enqueue(
     new TextEncoder().encode(`data: ${json}\n\n`),
   );
