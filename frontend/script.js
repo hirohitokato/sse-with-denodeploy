@@ -12,6 +12,6 @@ button.addEventListener('click', () => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ action: 'sendTime' }),
+    body: JSON.stringify({ action: 'sendTime', date: new Date().toISOString() }),
   });
 });
