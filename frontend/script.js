@@ -1,8 +1,11 @@
 const eventSource = new EventSource('/sse');
 
 eventSource.onmessage = (event) => {
+  const msg = JSON.parse(event.data);
+  const rtt = new Date() - new Date(msg.send_date);
+
   const message = document.getElementById('time');
-  message.textContent = event.data;
+  message.textContent = `received at ${msg.date}, (srv: ${msg.diff}ms RTT: ${rtt}ms)`;
 };
 
 const button = document.getElementById('sendButton');

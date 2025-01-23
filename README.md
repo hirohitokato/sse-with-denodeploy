@@ -1,21 +1,25 @@
 # Deno Hono SSE App
 
-このプロジェクトは、DenoとHonoを使用してServer-Sent Events (SSE) を実装したシンプルなアプリケーションです。ブラウザからのPOSTリクエストを受け取り、現在時刻をSSEでクライアントに送信します。
+DenoとHonoを使用してServer-Sent Events (SSE) を実装したシンプルなアプリケーションです。
+Webブラウザでボタンをクリックしたときに送られるPUTリクエストで、サーバー側から時刻情報や経過時間をSSEで送信します。
+ブラウザには、
+
+- サーバーがPUTを受信した時刻
+- PUTリクエストが届くまでにかかった時間
+- SSEでクライアントが受け取るまでにかかった時間
+
+を表示します。
 
 ## プロジェクト構成
 
 ```
 deno-hono-sse-app
 ├── src
-│   ├── main.ts          # アプリケーションのエントリーポイント
-│   ├── routes
-│   │   └── index.ts     # POSTリクエストを処理するルート
-│   └── types
-│       └── index.ts     # 型やインターフェースの定義
+│   └── main.ts          # アプリケーションのエントリーポイント
 ├── frontend
 │   ├── index.html       # ブラウザに表示されるHTMLページ
 │   └── script.js        # クライアントサイドのJavaScriptコード
-├── deno.json            # Denoの設定ファイル
+├── deno.jsonc           # Denoの設定ファイル
 └── README.md            # プロジェクトのドキュメント
 ```
 
